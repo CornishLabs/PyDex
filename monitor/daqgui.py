@@ -493,8 +493,9 @@ class daq_window(QMainWindow):
     
     def set_n(self, num):
         """Receive the new run number to update to"""
-        self.stats['n'] = int(num)
-        self.n_edit.setText(str(num))
+        if num is not None:
+            self.stats['n'] = int(num)
+            self.n_edit.setText(str(num))
         
     def set_save_dir(self, directory):
         """Set the directory to save results to"""
@@ -549,6 +550,7 @@ class daq_window(QMainWindow):
         elif 'measure' in msg:
             try:
                 x = self.dc.slices[0]
+                print(x.stats)
                 self.tcp.add_message(self.stats['n'], str(x.stats[list(x.stats.keys())[0]]['mean'][-1]))
             except Exception as e:
                 error("Couldn't send measurement.\n"+str(e))

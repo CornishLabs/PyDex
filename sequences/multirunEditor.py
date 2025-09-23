@@ -141,7 +141,7 @@ class multirun_widget(QWidget):
             'DDS1 port : profile', 'DDS2 module : profile', 'DDS3 module : profile',
             'SLM holograms','MWG (WFTK) tones','MWG (Anritsu) tones'] # these analogue types require the analogue options 
         self.col_range_text = ['']*ncols
-        self.COM = ['RB1A', 'RB2', 'RB3', 'RB4', 'RB1B'] # DDS COM port connections
+        self.COM = ['RB1A', 'RB2', 'RB3', 'RB4', 'RB1B','',"RB1A'","RB1B'"] # DDS COM port connections
         self.COM2 = ['977', '1557', '1013', '420'] # DDS2 module connections
         self.COM3 = ['Name0','Name1','HFImage','Name3','Name4']
         self.mr_param = copy.deepcopy(self.ui_param) # parameters used for current multirun
@@ -561,8 +561,8 @@ class multirun_widget(QWidget):
                 ddsoptions = ['%s : P%s - '%(i+1,j)+self.COM3[i] for i in range(5) for j in range(8)]
                 for i in range(4): ddsoptions.insert(i*9+8, '%s : aux - '%(i+1)+self.COM3[i])
             else:
-                ddsoptions = ['COM%s : P%s - '%(i+7,j)+self.COM[i] for i in range(5) for j in range(8)]
-                for i in range(5): ddsoptions.insert(i*9+8, 'COM%s : aux - '%(i+7)+self.COM[i])
+                ddsoptions = ['COM%s : P%s - '%(i+7,j)+self.COM[i] for i in range(8) for j in range(8)]
+                for i in range(8): ddsoptions.insert(i*9+8, 'COM%s : aux - '%(i+7)+self.COM[i])
             self.chan_choices['Time step name'].addItems(ddsoptions)
             reset_slot(self.chan_choices['Analogue type'].currentTextChanged[str], self.change_mr_anlg_type, False)
             self.chan_choices['Analogue type'].clear()

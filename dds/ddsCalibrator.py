@@ -9,6 +9,7 @@ sys.path.append(r'Z:\Tweezer\Code\Python 3.5\PyDex\networking')
 from networker import PyServer
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, 
     QFileDialog, QBoxLayout, QLineEdit)
+from PyQt5.QtCore import QTimer
 
 class calibrator(QWidget):
     def __init__(self, ):
@@ -45,6 +46,9 @@ class calibrator(QWidget):
         save = QPushButton('Save Results')
         save.clicked.connect(self.save)
         layout.addWidget(save)
+        auto = QPushButton('Autorun')
+        auto.clicked.connect(self.autorun)
+        layout.addWidget(auto)
         
         self.amps = np.linspace(0,float(self.maxamp.text()),15)
         # np.random.shuffle(self.amps)
@@ -69,12 +73,23 @@ class calibrator(QWidget):
         
     def measure(self):
         """Request a measurement from the DAQ"""
-        self.daq_tcp.add_message(self.n, 'start')
+        # self.daq_tcp.add_message(self.n, 'reset graph')
+        # time.sleep(1)
+        # self.daq_tcp.add_message(self.n, 'start')
         self.daq_tcp.add_message(self.n, 'measure')
         self.daq_tcp.add_message(self.n, 'readout')
+
+    def reset_graph(self):
+        """Request the DAQ to reset the graph."""
+        self.daq_tcp.add_message(self.n, 'reset graph')
     
-    def respond(self, msg):
-        self.lastval.setText(msg)
+    def respond(self, msg): 
+        print(msg)
+        try:
+            float(msg)
+            self.lastval.setText(msg)
+        except:
+            pass
 
     def store(self): 
         try:
@@ -93,6 +108,36 @@ class calibrator(QWidget):
         plt.xlabel('DDS Amp')
         plt.ylabel('DAQ signal (V)')
         plt.show()
+
+    def autorun(self):
+        self.amp_index = 0
+        self.auto_start()
+
+    def auto_start(self):
+        if self.amp_index >= len(self.amps):
+            self.save()
+            return
+
+        self.programme()
+        QTimer.singleShot(5000, self.auto_reset_graph)
+
+    def auto_reset_graph(self):
+        self.reset_graph()
+        QTimer.singleShot(5000, self.auto_measure)
+
+    def auto_measure(self):
+        QApplication.processEvents()
+        self.measure()
+        QTimer.singleShot(5000, self.auto_store)
+
+    def auto_store(self):
+        QApplication.processEvents()
+        self.store()
+        QTimer.singleShot(2000, self.next_amp)
+
+    def next_amp(self):
+        self.amp_index += 1
+        self.auto_start()
         
 if __name__ == "__main__":
     app = QApplication.instance()
