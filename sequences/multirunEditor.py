@@ -135,7 +135,7 @@ class multirun_widget(QWidget):
         self.dds_args = ['Freq', 'Phase', 'Amp', 'Start_add', 'End_add', 'Step_rate', 'Sweep_start', 
         'Sweep_end', 'Pos_step', 'Neg_step', 'Pos_step_rate', 'Neg_step_rate']
         self.slm_args = ['f','period','angle','radius','gradient','shift','radial','azimuthal','amplitude','max_mod_depth','radius_scale']
-        self.rfsoc_args = ['freq (MHz)', 'time (us)', 'gain (dac units 1-30000)']
+        self.rfsoc_args = ['freq (MHz)', 'time (us)', 'gain (dac units 1-32765)']
         self.mwg_wftk_args = ['freq (MHz)','amp (dBm)','phase (deg)']
         self.mwg_anritsu_args = ['freq (MHz)','amp (dBm)']
         self.column_options = ['Analogue voltage', 'AWG1 chan : seg', 'AWG2 chan : seg', 'AWG3 chan : seg',
