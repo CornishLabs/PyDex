@@ -3497,7 +3497,7 @@ if __name__ == "__main__":
     
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow(port=8624, host='129.234.190.164', alim=alim)
+    ui = Ui_MainWindow(port=8624, host='192.168.23.10', alim=alim)
     ui.setupUi_coms(MainWindow)
     ui.load_all('dds/defaultDDS.txt')
     ui.RAM_data.setCurrentText('RAM Amplitude')

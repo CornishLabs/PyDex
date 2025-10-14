@@ -639,13 +639,13 @@ class settings_window(QMainWindow):
             if mw.histo_handler.types[key] == float]) 
         datastr += ' ' + str(int(time.time()*1e9)) + '\n'
         
-        msg = "POST /write?db=arduino HTTP/1.1\nHost: 129.234.190.191\n"
+        msg = "POST /write?db=arduino HTTP/1.1\nHost: 192.168.23.12\n"
         msg += "User-Agent: PyDex\nConnection: close\n"
         msg += "Content-Type: application/x-www-form-urlencoded\n"
         msg += "Content-Length: %s\n\n"%len(datastr)
         msg += datastr
         try:
-            _ = simple_msg('129.234.190.191', 8086, msg)
+            _ = simple_msg('192.168.23.12', 8086, msg)
         except Exception as e:
             error("Settings window failed to send results to influxdb\n"+str(e))
 

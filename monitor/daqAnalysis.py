@@ -51,7 +51,7 @@ class daqSlice:
         self.stats = OrderedDict([(chan, OrderedDict([
             ('mean',[]), ('stdv',[])])) for chan in channels.keys()])
 
-        self.blurbstr = "POST /write?db=arduino HTTP/1.1\nHost: 129.234.190.191\n"
+        self.blurbstr = "POST /write?db=arduino HTTP/1.1\nHost: 192.168.23.12\n"
         self.blurbstr += "User-Agent: PyDex\nConnection: close\n"
         self.blurbstr += "Content-Type: application/x-www-form-urlencoded\n"
         self.blurbstr += "Content-Length: %s\n\n"
@@ -73,7 +73,7 @@ class daqSlice:
                             datastr = self.datastr + "mean_V=%.6f,stdv_V=%.6f "%(self.stats[chan]['mean'][-1], self.stats[chan]['stdv'][-1])
                             datastr += str(int(time.time()*1e9)) + '\n'
                             msg = self.blurbstr%len(datastr) + datastr
-                            _ = simple_msg('129.234.190.191', 8086, msg)
+                            _ = simple_msg('192.168.23.12', 8086, msg)
                         except Exception as e:
                             error("DAQ analysis failed to send results to influxdb\n"+str(e))
                 except IndexError as e:

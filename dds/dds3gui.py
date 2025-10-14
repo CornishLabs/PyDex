@@ -1855,7 +1855,7 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow(port=8633, host='129.234.190.164', alim=1, 
+    ui = Ui_MainWindow(port=8633, host='192.168.23.10', alim=1, 
                        Today_file=today_file_path, enable_print = True)
     ui.setupUi_coms(MainWindow)
     

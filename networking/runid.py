@@ -98,11 +98,11 @@ class runnum(QThread):
         self.rfsoctcp = PyServer(host='', port=8636, name='RFSOC') # RFSOC program runs separately
         self.rfsoctcp.start()
         if not dev_mode:
-            self.client = PyClient(host='129.234.190.235', port=8626, name='AWG1 recv') # incoming from AWG
-            self.clien2 = PyClient(host='129.234.190.233', port=8629, name='AWG2 recv') # incoming from AWG2\
-            self.clien3 = PyClient(host='129.234.190.234', port=8639, name='AWG3 recv') # incoming from AWG2\
-            self.clientmwg_wftk = PyClient(host='129.234.190.235', port=8632, name='MW recv (WFTK)') # incoming from MW generator (WFTK) control
-            self.clientmwg_anritsu = PyClient(host='129.234.190.235', port=8635, name='MW recv (Anritsu)') # incoming from MW generator (Anritsu) control
+            self.client = PyClient(host='192.168.23.21', port=8626, name='AWG1 recv') # incoming from AWG
+            self.clien2 = PyClient(host='192.168.23.22', port=8629, name='AWG2 recv') # incoming from AWG2\
+            self.clien3 = PyClient(host='192.168.23.23', port=8639, name='AWG3 recv') # incoming from AWG2\
+            self.clientmwg_wftk = PyClient(host='192.168.23.21', port=8632, name='MW recv (WFTK)') # incoming from MW generator (WFTK) control
+            self.clientmwg_anritsu = PyClient(host='192.168.23.21', port=8635, name='MW recv (Anritsu)') # incoming from MW generator (Anritsu) control
         else:
             self.client = PyClient(host='localhost', port=8626, name='AWG1 recv') # incoming from AWG
             self.clien2 = PyClient(host='localhost', port=8629, name='AWG2 recv') # incoming from AWG2

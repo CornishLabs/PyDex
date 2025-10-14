@@ -51,7 +51,7 @@ class awg_window(QMainWindow):
     def __init__(self, config_file='.\\state', AWG_channels=[0], 
             default_seq=r'Z:\Tweezer\Code\Python 3.5\PyDex\awg\AWG template sequences\single_static.txt',
             rearr_base_path=r'Z:\Tweezer\Code\Python 3.5\PyDex\awg\AWG template sequences\rearr_base.txt',
-            server_port=8626, clientIP='129.234.190.164', client_port=8623, name='AWG1'):
+            server_port=8626, clientIP='192.168.23.10', client_port=8623, name='AWG1'):
         super().__init__()
         # self.types = OrderedDict([('FileName',str), ('segment',int)])
         self.stats = OrderedDict([('FileName', 0), ('segment', 0)])
