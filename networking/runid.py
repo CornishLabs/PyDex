@@ -342,8 +342,8 @@ class runnum(QThread):
                 except Exception as e: error('Invalid SLM parameter at (%s, %s)\n'%(v,col)+str(e))
             elif 'RFSOC' in self.seq.mr.mr_param['Type'][col] and module == 'RFSOC':
                 try: # argument: value
-                    for n in self.seq.mr.mr_param['Pulse Number'][col]: # index of chosen pulse
-                        for m in self.seq.mr.mr_param['Parameter'][col]:
+                    for n in self.seq.mr.mr_param['Time step name'][col]: # index of chosen pulse
+                        for m in self.seq.mr.mr_param['Analogue channel'][col]:
                             msg += '[%s,"%s",%s],'%(n, # [PulseIndex, parameter, value]
                                 self.seq.mr.rfsoc_args[m], 
                                 self.seq.mr.mr_vals[v][col])
