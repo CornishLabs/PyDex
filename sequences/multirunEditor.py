@@ -617,7 +617,7 @@ class multirun_widget(QWidget):
         else:
             if  any(self.chan_choices['Analogue type'].currentText()==x for x in 
                         ['AWG Parameter', 'DDS Parameter','Hologram Parameter',
-                         'MWG (WFTK) Parameter','MWG (Anritsu) Parameter']):
+                         'MWG (WFTK) Parameter','MWG (Anritsu) Parameter','RFSOC Parameter']):
                 self.chan_choices['Analogue type'].clear()
                 self.chan_choices['Analogue type'].addItems(['Fast analogue', 'Slow analogue'])
                 self.chan_choices['Analogue type'].currentTextChanged[str].connect(self.change_mr_anlg_type)
