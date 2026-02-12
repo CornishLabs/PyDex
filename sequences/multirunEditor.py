@@ -583,7 +583,7 @@ class multirun_widget(QWidget):
             self.chan_choices['Analogue channel'].addItems(self.slm_args)
         elif newtype == 'RFSOC pulse':
             self.chan_choices['Time step name'].clear()
-            rfsocoptions = ['Pulse %s'%(i) for i in range(7)]
+            rfsocoptions = ['Pulse %s'%(i) for i in range(20)]
             self.chan_choices['Time step name'].addItems(rfsocoptions)
             reset_slot(self.chan_choices['Analogue type'].currentTextChanged[str], self.change_mr_anlg_type, False)
             self.chan_choices['Analogue type'].clear()
